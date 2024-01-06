@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../asset/css/style.css">
+
+</head>
+
+<body>
+
+    <section id="main" class="container pt-5">
+        <h2>Quản lý học viện nghiên cứu và
+            giảng dạy</h2>
+
+        <div class="row">
+            <div class="col-8">
+                <button id="btnThem" type="button" class="btn btn-primary mb-3 text-white" data-toggle="modal"
+                    data-target="#exampleModal">
+                    Thêm Người Dùng
+                </button>
+            </div>
+            <div class="col-4">
+                <div class="form-group row">
+                    <label for="selLoai" class="col-sm-2 col-form-label">User</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="selLoai">
+                            <option selected>Chọn loại</option>
+                            <option value="all">Tất cả</option>
+                            <option value="loai1">Nhân Viên</option>
+                            <option value="loai2">Học viên</option>
+                            <option value="loai3">Khách Hàng</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive employeTable">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Loại</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Tổng lương</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyUser"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm Người dùng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" id="userForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id">Mã</label>
+                                <input type="text" class="form-control" id="id" placeholder="Nhập ID" value=""
+                                    required />
+                                <div id="invalidID" class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="name">Tên</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nhập tên" value=""
+                                    required />
+                                <div id="invalidName" class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="address">Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" value=""
+                                    required />
+                                <div id="invalidAddress" class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="Nhập email" value=""
+                                    required />
+                                <div id="invalidEmail" class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="tinhTrang">Loại người dùng</label>
+                                <select class="custom-select d-block w-100" id="loai" required>
+                                    <option value="">Chọn loại</option>
+                                    <option value="0">Nhân viên</option>
+                                    <option value="1">Học viên</option>
+                                    <option value="2">Khách hàng</option>
+                                </select>
+                                <div id="invalidTT" class="invalid-feedback"></div>
+                            </div>
+                            <div class="row ml-0 mb-3 " id="empStatus">
+                                <div class="col-md-6">
+                                    <label for="days">Số ngày làm việc</label>
+                                    <input type="number" class="form-control" id="days" placeholder="Nhập số ngày"
+                                        value="" required />
+                                    <div id="invalidDay" class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label for="salary">Lương theo ngày</label>
+                                    <input type="number" class="form-control" id="salary" placeholder="Nhập lương"
+                                        value="" required />
+                                    <div id="invalidSalary" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="row ml-0 mb-3" id="stuStatus">
+                                <div class="col-md-4 ">
+                                    <label for="math">Điểm Toán</label>
+                                    <input type="number" class="form-control" id="math" placeholder="Nhập điểm "
+                                        value="" required />
+                                    <div id="invalidMath" class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="phys">Điểm Lý</label>
+                                    <input type="number" class="form-control" id="phys" placeholder="Nhập điểm "
+                                        value="" required />
+                                    <div id="invalidPhys" class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="chem">Điểm Hóa</label>
+                                    <input type="number" class="form-control" id="chem" placeholder="Nhập điểm "
+                                        value="" required />
+                                    <div id="invalidChem" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-warning" id="btnCapNhat">
+                        Cập Nhật
+                    </button>
+                    <button type="button" class="btn btn-warning" id="btnThemUser">
+                        Thêm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- JS -->
+    <script type="module" src="../controller/index.js"></script>
+</body>
+
+</html>
